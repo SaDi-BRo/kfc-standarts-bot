@@ -1,20 +1,11 @@
-import { webhookCallback, serve, config } from './lib.ts';
+import { webhookCallback, config } from './lib.ts';
 import { bot } from './bot.ts';
 
 config().MODE === 'development' && bot.start();
 
-config().MODE === 'production' &&
-  serve(async req => {
-    const handleUpdate = webhookCallback(bot, 'std/http');
-    if (req.method === 'POST') {
-      const url = new URL(req.url);
-      if (url.pathname.slice(1) === bot.token) {
-        try {
-          return await handleUpdate(req);
-        } catch (err) {
-          console.error(err);
-        }
-      }
-    }
-    return new Response();
-  });
+import { Application } from 'https://deno.land/x/oak@v17.1.3/mod.ts';
+
+const app = new Application(); // or whatever you're using
+
+// Make sure to specify the framework you use.
+app.use(webhookCallback(bot, 'oak'));
