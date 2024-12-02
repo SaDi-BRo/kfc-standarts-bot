@@ -10,4 +10,4 @@ import { Application } from 'https://deno.land/x/oak@v17.1.3/mod.ts';
 const app = new Application(); // or whatever you're using
 
 // Make sure to specify the framework you use.
-Deno.env.get('MODE') === 'development' && app.use(webhookCallback(bot, 'oak'));
+Deno.env.get('MODE') === 'production' && app.use(webhookCallback(bot, 'oak'));
