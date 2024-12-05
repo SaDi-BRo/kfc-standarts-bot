@@ -1,0 +1,1 @@
+start = KFC standartlari botiga xush kelibsiz!

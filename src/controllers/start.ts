@@ -1,7 +1,7 @@
-import { Context } from '../core/lib.ts';
+import { MyContext } from '../core/bot.ts';
 
-const startController = (ctx: Context) => {
-  ctx.reply('start');
+const startController = async (ctx: MyContext) => {
+  await ctx.reply(ctx.t('start'));
 };
 
 export { startController };
